@@ -8,7 +8,7 @@ The goal of Freenance is to empower users to manage their finances locally on th
 
 - **Feature 1**: Coming soon
 
-### Contributing
+## Contributing
 We welcome contributions to freenance! If you'd like to contribute, please fork the repository, create a feature branch, and submit a pull request.
 
 #### Steps to Contribute
@@ -20,5 +20,5 @@ We welcome contributions to freenance! If you'd like to contribute, please fork 
 6. I'll review the request
 7. Congrats you contribute to freenance!
 
-License
+## License
 Freenance is licensed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License).
