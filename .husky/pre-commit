@@ -1,1 +1,6 @@
-pnpm test
+# Only run tests if there are test files
+if find ./src -name "*.test.ts" -o -name "*.spec.ts" | grep -q .; then
+  pnpm test
+else
+  echo "No test files found, skipping tests."
+fi
