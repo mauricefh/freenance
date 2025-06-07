@@ -1,4 +1,5 @@
-import SignInForm from "@/components/ui/signin-form";
+// src/app/auth/signin/page.tsx
+import SignInForm from "@/components/ui/auth/form";
 import { Suspense } from "react";
 
 export default function Page() {

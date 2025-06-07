@@ -1,32 +1,18 @@
 // src/auth.ts
-import ResendProvider from "next-auth/providers/resend";
-import GitHubProvider from "next-auth/providers/github";
-import GoogleProvider from "next-auth/providers/google";
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import prisma from "@/lib/prisma/client";
-import { sendVerificationEmail } from "@/lib/email/email";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { authorizeWithCredentials } from "@/lib/auth/credentials";
 import NextAuth from "next-auth";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import { prisma } from "@/lib/prisma/client";
+import authConfig from "./auth.config";
+import GitHub from "next-auth/providers/github";
+import Google from "next-auth/providers/google";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
+  ...authConfig,
   adapter: PrismaAdapter(prisma),
   secret: process.env.AUTH_SECRET,
-  providers: [
-    GitHubProvider({
-      clientId: process.env.AUTH_GITHUB_ID!,
-      clientSecret: process.env.AUTH_GITHUB_SECRET!,
-    }) as any, // 👈 temp fix
-    GoogleProvider({
-      clientId: process.env.AUTH_GOOGLE_ID!,
-      clientSecret: process.env.AUTH_GOOGLE_SECRET!,
-    }) as any,
-    ResendProvider({
-      server: process.env.EMAIL_SERVER!,
-      from: process.env.EMAIL_FROM!,
-      sendVerificationRequest: async ({ identifier, url, provider, theme }) => {
-        await sendVerificationEmail(identifier, url);
-      },
-    }),
-  ],
+  session: { strategy: "jwt" },
   pages: {
     signIn: "/auth/signin",
     signOut: "/auth/signout",
@@ -34,4 +20,18 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     verifyRequest: "/auth/verify-request",
     newUser: "/auth/new-user",
   },
+  providers: [
+    Google,
+    GitHub,
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        return authorizeWithCredentials(credentials);
+      },
+    }),
+  ],
 });
