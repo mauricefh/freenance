@@ -22,9 +22,31 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".", // Required for paths to work
     "paths": {
       "@/*": [
-        "./src/*"
+        "src/*"
+      ],
+      "@app/*": [
+        "src/app/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@lib/*": [
+        "src/lib/*"
+      ],
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
+      "@services/*": [
+        "src/services/*"
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
       ]
     }
   },

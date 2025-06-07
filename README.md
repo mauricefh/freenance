@@ -95,6 +95,51 @@ This project demonstrates my capabilities in:
 
 ---
 
+## Resources
+
+### 🔧 Frameworks & Runtime
+
+- [Next.js](https://nextjs.org/) – React framework for full stack apps
+- [Capacitor.js](https://capacitorjs.com/) – Native runtime for mobile apps
+
+### 🔐 Authentication & Security
+
+- [NextAuth](https://next-auth.js.org/) – Authentication for Next.js
+- [Zod](https://zod.dev/) – Schema validation
+- [Sentry](https://sentry.io/) – Error monitoring
+- [Husky](https://typicode.github.io/husky/) – Git hooks for linting, testing, etc.
+
+### 🎨 Styling & UI
+
+- [Tailwind CSS](https://tailwindcss.com/) – Utility-first CSS framework
+- [Shadcn UI](https://ui.shadcn.com/) – UI components built on Radix + Tailwind
+- [Motion](https://motion.dev/) – Animation library for React
+
+### 🧠 State & Form Management
+
+- [Zustand](https://zustand.docs.pmnd.rs/) – Global state management
+- [react-hook-form](https://react-hook-form.com/) – Form management
+
+### 📊 Data & Visualization
+
+- [Chart.js](https://www.chartjs.org/) – Data visualization
+- [date-fns](https://date-fns.org/) – Date utility functions
+
+### 🛠️ Backend & Database
+
+- [PostgreSQL](https://www.postgresql.org/) – Relational database
+- [Prisma](https://www.prisma.io/) – ORM for Node.js and TypeScript
+
+### ✅ Testing & Dev Tools
+
+- [Vitest](https://vitest.dev/) – Unit testing framework
+- [React Testing Library](https://testing-library.com/) – UI component testing
+- [Playwright](https://playwright.dev/) – End-to-end browser testing
+- [MSW (Mock Service Worker)](https://mswjs.io/) – API mocking for tests
+- [react-hot-toast](https://react-hot-toast.com/) – Toast notifications
+
+---
+
 ## ✍️ Author
 
 **Maurice Filiatreault**  
