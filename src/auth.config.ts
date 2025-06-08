@@ -31,14 +31,12 @@ export default {
       // First time the JWT is created
       if (user) {
         token.sub = user.id;
-        token.theme = user.theme ?? "light";
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user && token.sub) {
         session.user.id = token.sub;
-        session.user.theme = token.theme as string;
       }
       return session;
     },
