@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 const prisma = new PrismaClient();
 
 async function main() {
-  const email = "test@example.com";
+  const email = "inbox@mauricefh.com";
   const plainPassword = "password123";
 
   const existingUser = await prisma.user.findUnique({ where: { email } });
@@ -20,7 +20,7 @@ async function main() {
     data: {
       email,
       password: hashedPassword,
-      name: "Test User",
+      name: "Maurice Filiatreault",
     },
   });
 

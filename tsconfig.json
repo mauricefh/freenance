@@ -48,7 +48,10 @@
       "@utils/*": [
         "src/utils/*"
       ]
-    }
+    },
+    "types": [
+      "next-auth"
+    ]
   },
   "include": [
     "next-env.d.ts",
