@@ -1,13 +1,14 @@
 // src/auth.ts
 import CredentialsProvider from "next-auth/providers/credentials";
 import { authorizeWithCredentials } from "@/lib/auth/credentials";
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthConfig } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/lib/prisma/client";
 import authConfig from "./auth.config";
 import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
 
+const protectedRoutes = ["/dashboard", "/transactions"];
 export const { auth, handlers, signIn, signOut } = NextAuth({
   ...authConfig,
   adapter: PrismaAdapter(prisma),
@@ -34,4 +35,31 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       },
     }),
   ],
-});
+  callbacks: {
+    authorized: ({ auth, request }) => {
+      const { pathname } = request.nextUrl;
+
+      const isProtected = protectedRoutes.some((route) =>
+        pathname.startsWith(route),
+      );
+
+      // Return true if route is not protected, or if user is authenticated
+      return !isProtected || !!auth?.user;
+    },
+    async jwt({ token, user }) {
+      // First time the JWT is created
+      if (user) {
+        token.sub = user.id;
+        token.theme = user.theme ?? "light";
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session.user && token.sub) {
+        session.user.id = token.sub;
+        session.user.theme = token.theme as string;
+      }
+      return session;
+    },
+  },
+} satisfies NextAuthConfig);

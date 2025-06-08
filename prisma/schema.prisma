@@ -21,6 +21,7 @@ model User {
   emailVerified DateTime?
   password      String?
   image         String?
+  theme         String          @default("light")
   accounts      Account[]
   sessions      Session[]
   // Optional for WebAuthn support
