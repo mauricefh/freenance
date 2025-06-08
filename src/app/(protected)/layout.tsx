@@ -4,6 +4,7 @@ import "../globals.css";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import AppSidebar from "@/components/app-sidebar";
 import { ThemeProvider } from "next-themes";
+import AppBreadcrumb from "@/components/app-breadcrumb";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -22,8 +23,9 @@ export default async function ProtectedLayout({
     <ThemeProvider attribute="class" defaultTheme="light">
       <SidebarProvider defaultOpen={defaultOpen}>
         <AppSidebar />
-        <main>
+        <main className="p-4">
           {/* <SidebarTrigger /> */}
+          <AppBreadcrumb />
           {children}
         </main>
       </SidebarProvider>
